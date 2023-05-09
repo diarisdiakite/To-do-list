@@ -80,16 +80,18 @@ input::placeholder{
 
 /* Display-tasks DIV */
 #checkbox {
-  width: 10%;
-  margin-left: 0;  
+  width: 3%;
+  margin-left: 0;
+  align-self: left;  
+  text-align: left;
 }
 
 #description {
-  width: 80%;
+  width: 85%;
 }
 
 #action {
-  width: 10%;
+  width: 12%;
 }
 
 

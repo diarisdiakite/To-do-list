@@ -4,7 +4,7 @@ import './style.css';
 function component() {
   const element = document.createElement('div');
   // Lodash, now imported by this script
-  element.innerHTML = _.join(['To-do', 'list'], ' ');
+  element.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
   element.classList.add('hello');
   return element;
 }
@@ -36,29 +36,34 @@ export const tasks = [
   },
 ];
 
-//Create class here
+/*
+Create class here
+  - Write a function to iterate over the tasks array and populate an HTML list item element for each task.
+  - On page load render the dynamically created list of tasks in the dedicated placeholder. 
+The list should appear in order of the `index` values for each task.
+*/
 
-export const renderTasks = () => {
+//export const renderTasks = () => {
   tasks.forEach((task) => {
-    let taskCard = document.getElementById('task-card');
-    let checkCompleted = document.createElement('p');
+    let displayTasks = document.getElementById('display-list');
+    let checkCompleted = document.createElement('INPUT');
+    checkCompleted.setAttribute('type', 'checkbox')
+    
     let taskActions = document.createElement('img');
     taskActions.classList.add('list-element');
     taskActions.setAttribute('id', 'action');
     
-    //taskCard.innerHTML += checkCompleted;
-    taskCard.innerHTML += `
+    displayTasks.appendChild(checkCompleted);
+
+    displayTasks.innerHTML += `
       <ul class="list flex">
-      <li class="list-element" id="checkbox">
-        <checkbox>${task.completed}</checkbox>
-      </li>
-      <li class="list-element" id="description">
-        ${task.description}
-      </li>
+        <li class="list-element" id="description">
+          ${task.description}
+        </li>
     </ul>
     `
-    taskCard.innerHTML += taskActions;
+    displayTasks.appendChild(taskActions);
 
   })
 
-};
+//};
