@@ -3,11 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wbpack Exercise</title>
+    <title>to-do list</title>
 <script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></head>
-<body>
-    <h1>Hello webpack!</h1>
+<body>*
+  <header>
+  </header>
+  <main>
+    <div class="main-container">
+      <div id="title" class="row my-bg-gray">
+        <h1>Today's To Do</h1>
+        <img src="" alt="">
+      </div>
+      <!-- Form -->
+      <div id="form" class="row">
+        <form action="">
+          <input-control>
+            <input type="text" placeholder="Add your list..." required>
+          </input-control>
+        </form>
+      </div>
 
+      <!-- Display all -->
+      <div id="display-list" class="row">
+        <ul class="task-card flex">
+          <li class="list-element" id="checkbox">
+            <!-- completed checkbox -->
+            <checkbox>Checked</checkbox>
+          </li>
+          <li class="list-element" id="description">
+            <!-- description -->
+            description
+          </li>
+          <li>
+            <!-- action Delete-->
+            <button class="list-element" id="action" type="button">Delete</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Delete completed -->
+      <div id="clear-completed" class="row my-bg-gray">
+        <a href=""><p>Clear all completed</p></a>
+      </div>
+    </div>
+  </main>
+  <footer>
+  </footer>
     <script src="../dist/main.js"></script>
 </body>
 </html>
