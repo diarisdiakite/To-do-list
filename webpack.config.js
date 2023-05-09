@@ -5,16 +5,16 @@ module.exports = {
   mode: 'development',
   entry: {
     main: './src/index.js',
-    //print: './src/print.js',
+    // print: './src/print.js',
   },
   devServer: {
     static: './dist',
   },
   plugins: [
-   new HtmlWebpackPlugin({
-     template: './src/index.html',
-   }),
- ],
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
