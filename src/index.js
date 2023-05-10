@@ -1,23 +1,7 @@
 import _ from 'lodash';
 import './style.css';
-
-const tasks = [
-  {
-    index: 1,
-    description: 'Create html file and add html elements',
-    completed: true,
-  },
-  {
-    index: 1,
-    description: 'Create js file and add js code',
-    completed: true,
-  },
-  {
-    index: 1,
-    description: 'Create css file and add styling elements',
-    completed: true,
-  },
-];
+import { todaysList, tasks } from './crud';
+console.log(tasks);
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
@@ -40,10 +24,9 @@ const renderTasks = () => {
     description.classList.add('list-element');
     description.setAttribute('id', `description-${task.index}`);
     description.setAttribute('id', 'description');
-    description.textContent = task.description;
+    //description.textContent = task.description;
 
     const taskActions = document.createElement('div');
-    // taskActions.src = Delete;
     taskActions.classList.add('list-element');
     taskActions.setAttribute('id', `action-${task.index}`);
     taskActions.setAttribute('id', 'action');
@@ -56,7 +39,33 @@ const renderTasks = () => {
   });
 };
 window.addEventListener('load', renderTasks);
+console.log(tasks)
 
+//Add Task
+const formDescription = document.getElementById('description');
+
+formDescription.addEventListener('keydown', (e) => {
+  debugger
+  if(e.key === 'Enter'){
+    e.preventDefault();
+    todaysList.createTask(formDescription.value);
+    formDescription.value = '';
+    todaysList.saveTasksToLocalStorage();
+    renderTasks();
+  }
+})
+
+//Remove Task
+
+
+
+//Update Task
+
+
+
+//Delete Task
+
+//
 const clearCompletedText = document.querySelector('#clear-completed-text');
 clearCompletedText.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
 

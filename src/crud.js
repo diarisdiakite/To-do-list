@@ -1,22 +1,22 @@
 //Create TASK class
-class Task {
-  constructor(description, completed=false, id){
+export class Task {
+  constructor(description, completed = false, id) {
     this.description = description;
     this.completed = completed;
     this.id = id;
   }
 
-  displayTask(){
+  displayTask() {
     return `${this.description}`;
   }
 }
 
 //Create tasksList class
-class TasksList {
-  constructor(name){
-    this.name = name;
-    this.id = this.TasksList.length + 1;
+export class TasksList {
+  constructor(name) {
     this.tasks = [];
+    this.name = name;
+    this.id = this.tasks.length + 1;
     this.getTasksFromLocalStorage();
   }
 
@@ -24,63 +24,65 @@ class TasksList {
   Add local sotrage methods
     3 main methods added here
   */
-  saveTasksToLocalStorage(){
-    localStorage.setItem(this.description, JSON.stringify(this.tasks));
+  saveTasksToLocalStorage() {
+    localStorage.setItem(this.name, JSON.stringify(this.tasks));
   }
 
-  getTasksFromLocalStorage(){
-    let storedTasks = localStorage.getItem(this.description);
-    if(storedTasks){
-      this.tasks = JSON.parse(storedTasks).map((task) => new Task(task.description, task.completed, task.id));
+  getTasksFromLocalStorage() {
+    let storedTasks = localStorage.getItem(this.name);
+    if (storedTasks) {
+      this.tasks = JSON.parse(storedTasks).map(
+        (task) => new Task(task.description, task.completed, task.id)
+      );
     }
     return this.tasks;
   }
 
-  getTaskByDescription(description){
-    return this.tasks.filter((task) => task.description === description); 
+  getTaskByDescription(description) {
+    return this.tasks.filter((task) => task.description === description);
   }
 
   /*
   Add CRUD methods
     4 main methods added here
   */
-  createTask(){
-    let error = 'Please provide a description'
-    if(description !== ''){
-      const task = new Task(
-        description, 
-        completed, 
-        )
+  createTask(description) {
+    let error = "Please provide a description";
+    if (description !== "") {
+      const task = new Task(description);
       this.tasks.push(task);
-      this.saveTasksToLocalStorage();  
+      this.saveTasksToLocalStorage();
       return this.tasks;
     } else {
       return error;
     }
-    
   }
 
-  readTask(id){
-    return this.tasks.filter(item => item.id === id);
+  readTask(id) {
+    return this.tasks.filter((item) => item.id === id);
   }
 
-  updateDescription(updatedDescrition){
-    this.description = updatedDescrition;    
+  updateDescription(updatedDescrition) {
+    this.description = updatedDescrition;
   }
 
-  deleteTask(id){
-    this.filteredList = this.tasks.filter((task) => task.id !== parseInt(id, 10));
+  deleteTask(id) {
+    this.filteredList = this.tasks.filter(
+      (task) => task.id !== parseInt(id, 10)
+    );
+    this.tasks = this.filteredList;
     this.saveTasksToLocalStorage();
     return this.filteredList;
   }
 
-  deleteCompletedTasks(){
+  deleteCompletedTasks() {
     const tasks = this.getTasksFromLocalStorage();
-    if(tasks){
-      return this.tasks.filter((task) => task.completed === true); 
-    }  
+    if (tasks) {
+      return this.tasks.filter((task) => task.completed === true);
+    }
   }
 }
-    
-let todaysList = new TasksList('To-Do today');
 
+export const todaysList = new TasksList("To-Do today");
+const tasks = todaysList.getTasksFromLocalStorage() || [];
+export { tasks };
