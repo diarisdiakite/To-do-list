@@ -41,17 +41,6 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
-
-        // dependency: { not: ['url'] },
-        use: [
-          {
-            loader: 'raw-loader',
-            options: {
-              limit: 8192,
-            },
-          },
-        ],
-
       },
     ],
   },
