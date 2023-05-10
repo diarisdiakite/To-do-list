@@ -1,9 +1,13 @@
 //Create TASK class
 class Task {
-  constructor(description, completed=false){
-    this.description = document.getElementById('description').value;
+  constructor(description, completed=false, id){
+    this.description = description;
     this.completed = completed;
-    this.id = this.task.length + 1;
+    this.id = id;
+  }
+
+  displayTask(){
+    return `${this.description}`;
   }
 }
 
@@ -13,38 +17,47 @@ class TasksList {
     this.name = name;
     this.id = this.TasksList.length + 1;
     this.tasks = [];
+    this.getTasksFromLocalStorage();
   }
 
-  //Add local sotrage methods
-  addToLocal(task){
-    this.tasks.push(JSON.stringify(task));
+  /*
+  Add local sotrage methods
+    3 main methods added here
+  */
+  saveTasksToLocalStorage(){
+    localStorage.setItem(this.description, JSON.stringify(this.tasks));
   }
 
-  getAllFromLocal(){
+  getTasksFromLocalStorage(){
+    let storedTasks = localStorage.getItem(this.description);
     if(storedTasks){
-      this.tasks = JSON.parse()||[]; //Real syntax
-      return this.tasks;
+      this.tasks = JSON.parse(storedTasks).map((task) => new Task(task.description, task.completed, task.id));
     }
-    
-  }
-
-  getAllCompleted(){
-    this.tasks = tasks.filter(item => this.task.completed = true);
     return this.tasks;
   }
 
-  //Add crud 
+  getTaskByDescription(description){
+    return this.tasks.filter((task) => task.description === description); 
+  }
+
+  /*
+  Add CRUD methods
+    4 main methods added here
+  */
   createTask(){
     let error = 'Please provide a description'
     if(description !== ''){
       const task = new Task(
-        this.description = document.getElementById('description').value,
-        this.id = this.tasks.length + 1,
-        )  
-      return this.TasksList;
+        description, 
+        completed, 
+        )
+      this.tasks.push(task);
+      this.saveTasksToLocalStorage();  
+      return this.tasks;
     } else {
       return error;
     }
+    
   }
 
   readTask(id){
@@ -56,8 +69,16 @@ class TasksList {
   }
 
   deleteTask(id){
-    this.filteredList = this.tasks.filter(item => item.id != id);
+    this.filteredList = this.tasks.filter((task) => task.id !== parseInt(id, 10));
+    this.saveTasksToLocalStorage();
     return this.filteredList;
+  }
+
+  deleteCompletedTasks(){
+    const tasks = this.getTasksFromLocalStorage();
+    if(tasks){
+      return this.tasks.filter((task) => task.completed === true); 
+    }  
   }
 }
     
