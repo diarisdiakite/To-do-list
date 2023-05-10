@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const mime = require('mime-types');
+// const mime = require('mime-types');
 
 module.exports = {
   mode: 'development',
@@ -37,6 +37,21 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+
+        // dependency: { not: ['url'] },
+        use: [
+          {
+            loader: 'raw-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+
       },
     ],
   },

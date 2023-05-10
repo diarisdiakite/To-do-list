@@ -1,24 +1,7 @@
 import _ from 'lodash';
 import './style.css';
-/* */
-function component() {
-  const element = document.createElement('div');
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
-  element.classList.add('hello');
-  return element;
-}
-document.body.appendChild(component());
 
-/*
-Create an **index.js** file and set an array of some simple *to do tasks* (array of objects).
-with each task object containing the three keys:
-  1. description [`string`].
-  2. completed [`bool`].
-  3. index: [`number`].
-*/
-
-export const tasks = [
+const tasks = [
   {
     index: 1,
     description: 'Create html file and add html elements',
@@ -36,34 +19,45 @@ export const tasks = [
   },
 ];
 
-/*
-Create class here
-  - Write a function to iterate over the tasks array and populate an HTML list item element for each task.
-  - On page load render the dynamically created list of tasks in the dedicated placeholder. 
-The list should appear in order of the `index` values for each task.
-*/
+const renderTasks = () => {
+  const displayTasks = document.getElementById('display-list');
+  displayTasks.innerHTML = '';
 
-//export const renderTasks = () => {
+  tasks.sort((a, b) => a.index - b.index);
+
   tasks.forEach((task) => {
-    let displayTasks = document.getElementById('display-list');
-    let checkCompleted = document.createElement('INPUT');
-    checkCompleted.setAttribute('type', 'checkbox')
-    
-    let taskActions = document.createElement('img');
+    const taskCard = document.createElement('ul');
+    taskCard.classList.add('task-card', 'flex', 'row');
+
+    const checkCompleted = document.createElement('input');
+    checkCompleted.setAttribute('type', 'checkbox');
+    checkCompleted.classList.add('list-element');
+    checkCompleted.setAttribute('id', `checkbox-${task.index}`);
+    checkCompleted.setAttribute('id', 'checkbox');
+    checkCompleted.checked = task.completed;
+
+    const description = document.createElement('li');
+    description.classList.add('list-element');
+    description.setAttribute('id', `description-${task.index}`);
+    description.setAttribute('id', 'description');
+    description.textContent = task.description;
+
+    const taskActions = document.createElement('div');
+    // taskActions.src = Delete;
     taskActions.classList.add('list-element');
+    taskActions.setAttribute('id', `action-${task.index}`);
     taskActions.setAttribute('id', 'action');
-    
-    displayTasks.appendChild(checkCompleted);
 
-    displayTasks.innerHTML += `
-      <ul class="list flex">
-        <li class="list-element" id="description">
-          ${task.description}
-        </li>
-    </ul>
-    `
-    displayTasks.appendChild(taskActions);
+    taskCard.appendChild(checkCompleted);
+    taskCard.appendChild(description);
+    taskCard.appendChild(taskActions);
 
-  })
+    displayTasks.appendChild(taskCard);
+  });
+};
+window.addEventListener('load', renderTasks);
 
-//};
+const clearCompletedText = document.querySelector('#clear-completed-text');
+clearCompletedText.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
+
+// };

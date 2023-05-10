@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>to-do list</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>to-do list</title>
 </head>
 <body>
   <header>
   </header>
   <main>
     <div class="main-container">
-      <div id="title" class="row my-bg-gray">
+      <div id="title" class="row my-bg-gray flex">
         <h1>Today's To Do</h1>
-        <img src="" alt="">
+        <div id="title-image"></div>
       </div>
       <!-- Form -->
       <div id="form" class="row">
@@ -26,24 +26,13 @@
       <!-- Display all -->
       <div id="display-list" class="row">
         <ul class="task-card flex" id="task-card">
-          <li class="list-element" id="checkbox">
-            <!-- completed checkbox -->
-            <input type="checkbox" value="" />
-          </li>
-          <li class="list-element" id="description">
-            <!-- description -->
-            description
-          </li>
-          <li>
-            <!-- action Delete-->
-            <button class="list-element" id="action" type="button">Delete</button>
-          </li>
+          
         </ul>
       </div>
 
       <!-- Delete completed -->
       <div id="clear-completed" class="row my-bg-gray">
-        <a href=""><p>Clear all completed</p></a>
+        <a href=""><p id="clear-completed-text"></p></a>
       </div>
     </div>
   </main>
