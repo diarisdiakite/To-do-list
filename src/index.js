@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import { todaysList, tasks } from './crud';
-console.log(tasks);
+import { todaysList, tasks, task } from './crud.js';
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
@@ -10,63 +9,123 @@ const renderTasks = () => {
   tasks.sort((a, b) => a.index - b.index);
 
   tasks.forEach((task) => {
+    const taskId = tasks.length + 1;
     const taskCard = document.createElement('ul');
     taskCard.classList.add('task-card', 'flex', 'row');
 
     const checkCompleted = document.createElement('input');
     checkCompleted.setAttribute('type', 'checkbox');
-    checkCompleted.classList.add('list-element');
-    checkCompleted.setAttribute('id', `checkbox-${task.index}`);
-    checkCompleted.setAttribute('id', 'checkbox');
+    checkCompleted.classList.add('list-element', 'checkbox');
+    checkCompleted.setAttribute('id', `checkbox-${taskId}`);
     checkCompleted.checked = task.completed;
 
-    const description = document.createElement('li');
-    description.classList.add('list-element');
-    description.setAttribute('id', `description-${task.index}`);
-    description.setAttribute('id', 'description');
-    //description.textContent = task.description;
+    checkCompleted.addEventListener('change', () => {
+      task.completed = checkCompleted.checked;
+      todaysList.saveTasksToLocalStorage();
+    });
 
-    const taskActions = document.createElement('div');
-    taskActions.classList.add('list-element');
-    taskActions.setAttribute('id', `action-${task.index}`);
-    taskActions.setAttribute('id', 'action');
+    let descriptionElement;
+    if (task.isEditing) {
+      descriptionElement = document.createElement('input');
+      descriptionElement.setAttribute('type', 'text');
+      descriptionElement.classList.add('list-element', 'description');
+      descriptionElement.value = task.description;
+
+      descriptionElement.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          task.description = descriptionElement.value;
+          task.isEditing = false;
+          todaysList.saveTasksToLocalStorage();
+          renderTasks();
+        } else if (e.key === 'Escape') {
+          task.isEditing = false;
+          todaysList.saveTasksToLocalStorage();
+          renderTasks();
+        }
+      });
+    } else {
+      descriptionElement = document.createElement('label');
+      descriptionElement.classList.add('list-element', 'description');
+      descriptionElement.setAttribute('id', `description-${task.id}`);
+      descriptionElement.textContent = task.description;
+
+      descriptionElement.addEventListener('click', () => {
+        task.isEditing = true;
+        todaysList.saveTasksToLocalStorage();
+        renderTasks();
+      });
+    }
+    // Add nested event listener for deleting
+    const taskActions = document.createElement('button');
+    taskActions.classList.add('list-element', 'action');
+    taskActions.setAttribute('id', `action-${task.id}`);
+
+    // Create a showRemove button
+    // hide the showRemove Button
+    // remove hidden on event listener clik
+    const showRemove = document.createElement('button');
+    showRemove.classList.add('list-element', 'showRemove', 'hidden');
+    showRemove.setAttribute('id', `showRemove-${task.id}`);
+
+    // Add nested event listener for deleting
+    taskActions.addEventListener('click', () => {
+      if (taskActions.classList.contains('action')) {
+        taskActions.classList.add('hidden');
+        showRemove.classList.remove('hidden');
+        showRemove.setAttribute('id', `showRemove-${task.id}`);
+        taskCard.appendChild(showRemove);
+
+        // second AddEventListener comes here
+        showRemove.addEventListener('click', (e) => {
+          if (task.completed === true) {
+            const taskId = e.target.dataset.id;
+            todaysList.deleteTask(taskId);
+            const taskToRemove = document.getElementById(`data-${taskId}`);
+            if (taskToRemove) {
+              displayTasks.remove(taskToRemove);
+            }
+          } else {
+            // taskCard.removeChild(showRemove);
+            showRemove.classList.add('hidden');
+            taskActions.classList.remove('hidden');
+            taskActions.setAttribute('id', 'action');
+          }
+        });
+        taskActions.setAttribute('id', 'action');
+      }
+    });
 
     taskCard.appendChild(checkCompleted);
-    taskCard.appendChild(description);
+    taskCard.appendChild(descriptionElement);
     taskCard.appendChild(taskActions);
+    taskCard.appendChild(showRemove);
 
     displayTasks.appendChild(taskCard);
   });
 };
-window.addEventListener('load', renderTasks);
-console.log(tasks)
 
-//Add Task
-const formDescription = document.getElementById('description');
+window.addEventListener('load', renderTasks);
+console.log(tasks);
+
+// Add Task
+const formDescription = document.getElementById('descriptionInput');
 
 formDescription.addEventListener('keydown', (e) => {
-  debugger
-  if(e.key === 'Enter'){
+  if (e.key === 'Enter') {
     e.preventDefault();
-    todaysList.createTask(formDescription.value);
+    todaysList.createTask(formDescription.value, task.id = tasks.length + 1);
     formDescription.value = '';
     todaysList.saveTasksToLocalStorage();
     renderTasks();
   }
-})
+});
 
-//Remove Task
+// Update Task
 
-
-
-//Update Task
-
-
-
-//Delete Task
-
-//
+// All tasks
 const clearCompletedText = document.querySelector('#clear-completed-text');
 clearCompletedText.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
 
-// };
+// Delete All completed Tasks
+const clearAllCompleted = document.getElementById('clear-completed-link');
+clearAllCompleted.addEventListener('click', todaysList.deleteCompletedTasks);

@@ -1,22 +1,11 @@
-//Create TASK class
-export class Task {
-  constructor(description, completed = false, id) {
-    this.description = description;
-    this.completed = completed;
-    this.id = id;
-  }
+import Task from './task.js';
 
-  displayTask() {
-    return `${this.description}`;
-  }
-}
-
-//Create tasksList class
+// Create tasksList class
 export class TasksList {
   constructor(name) {
-    this.tasks = [];
     this.name = name;
     this.id = this.tasks.length + 1;
+    this.tasks = [];
     this.getTasksFromLocalStorage();
   }
 
@@ -29,10 +18,10 @@ export class TasksList {
   }
 
   getTasksFromLocalStorage() {
-    let storedTasks = localStorage.getItem(this.name);
+    const storedTasks = localStorage.getItem(this.name);
     if (storedTasks) {
       this.tasks = JSON.parse(storedTasks).map(
-        (task) => new Task(task.description, task.completed, task.id)
+        (task) => new Task(task.description, task.completed, task.id),
       );
     }
     return this.tasks;
@@ -47,19 +36,18 @@ export class TasksList {
     4 main methods added here
   */
   createTask(description) {
-    let error = "Please provide a description";
-    if (description !== "") {
-      const task = new Task(description);
+    const error = 'Please provide a description';
+    if (description !== '') {
+      const task = new Task(description, false, this.tasks.length + 1);
       this.tasks.push(task);
       this.saveTasksToLocalStorage();
       return this.tasks;
-    } else {
-      return error;
     }
+    return error;
   }
 
   readTask(id) {
-    return this.tasks.filter((item) => item.id === id);
+    return this.tasks.filter((task) => task.id === id);
   }
 
   updateDescription(updatedDescrition) {
@@ -68,7 +56,7 @@ export class TasksList {
 
   deleteTask(id) {
     this.filteredList = this.tasks.filter(
-      (task) => task.id !== parseInt(id, 10)
+      (task) => task.id !== parseInt(id, 10),
     );
     this.tasks = this.filteredList;
     this.saveTasksToLocalStorage();
@@ -76,13 +64,15 @@ export class TasksList {
   }
 
   deleteCompletedTasks() {
-    const tasks = this.getTasksFromLocalStorage();
-    if (tasks) {
-      return this.tasks.filter((task) => task.completed === true);
-    }
+    // const tasks = this.getTasksFromLocalStorage();
+    const tasks = this.tasks.filter((task) => !task.completed);
+    this.saveTasksToLocalStorage();
+    console.log(localStorage);
+    return tasks;
   }
 }
 
-export const todaysList = new TasksList("To-Do today");
+export const todaysList = new TasksList('To-Do today');
 const tasks = todaysList.getTasksFromLocalStorage() || [];
-export { tasks };
+const task = new Task('my task');
+export { tasks, task };

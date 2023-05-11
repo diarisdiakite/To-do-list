@@ -68,6 +68,12 @@ ul {
   width: 5%;
   background: url(images/circle.jpg) no-repeat;
   background-size: 60%;
+  border: 0;
+}
+
+#title-image:hover {
+  opacity: 80%;
+  cursor: pointer;
 }
 
 /* Form DIV */
@@ -78,26 +84,46 @@ input {
 
 input::placeholder {
   font-style: italic;
+  padding-left: 1%;
 }
 
+
 /* Display-tasks DIV */
-#checkbox {
+.checkbox {
   width: 3%;
   margin-bottom: 0;
   margin-left: 0;
   text-align: left;
 }
 
-#description {
+.description {
   margin-left: 1%;
   width: 92%;
   align-self: center;
 }
 
-#action {
+.action {
   width: 5%;
   background: url(images/dots.webp) no-repeat;
-  background-size: 60%;
+  background-size: 50%;
+  border: 0;
+}
+
+.showRemove {
+  width: 5%;
+  background: url(images/delete.png) no-repeat;
+  background-size: 50%;
+  border: 0;
+}
+
+.showRemove:hover,
+.action:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 /* Clear all completed DIV */
