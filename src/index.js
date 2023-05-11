@@ -92,11 +92,13 @@ const renderTasks = () => {
         // second AddEventListener comes here
         showRemove.addEventListener('click', (e, tasks) => {
           if (checkCompleted.checked) {
-            // const { taskId } = e.target.dataset;
             todaysList.deleteTask(taskId, tasks);
             const taskToRemove = document.getElementById(`taskCard-${taskId}`);
             if (taskToRemove) {
               displayTasks.removeChild(taskToRemove);
+              const tasksTodelete = [];
+              tasksTodelete.push(task);
+              console.log(tasksTodelete);
             }
           } else {
             showRemove.classList.add('hidden');

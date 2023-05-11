@@ -61,7 +61,10 @@ export class TasksList {
   }
 
   deleteCompletedTasks() {
-    // const tasks = this.getTasksFromLocalStorage();
+    this.tasksTodelete = [];
+    this.tasksTodelete.push(tasks.filter((task) => task.id === parseInt(id, 10)));
+    console.log(this.tasksTodelete);
+
     const tasks = this.tasks.filter((task) => !task.completed);
     this.saveTasksToLocalStorage();
     return tasks;
