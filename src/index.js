@@ -24,8 +24,7 @@ const renderTasks = () => {
     const taskId = tasks.length + 1;
     const taskCard = document.createElement('ul');
     taskCard.classList.add('task-card', 'flex', 'row');
-    taskCard.setAttribute('id', `taskCard-${taskId}`)
-
+    taskCard.setAttribute('id', `taskCard-${taskId}`);
 
     const checkCompleted = document.createElement('input');
     checkCompleted.setAttribute('type', 'checkbox');
@@ -93,7 +92,7 @@ const renderTasks = () => {
         // second AddEventListener comes here
         showRemove.addEventListener('click', (e, tasks) => {
           if (checkCompleted.checked) {
-            //const { taskId } = e.target.dataset;
+            // const { taskId } = e.target.dataset;
             todaysList.deleteTask(taskId, tasks);
             const taskToRemove = document.getElementById(`taskCard-${taskId}`);
             if (taskToRemove) {
@@ -119,7 +118,6 @@ const renderTasks = () => {
 };
 
 window.addEventListener('load', renderTasks);
-console.log(tasks);
 
 // All tasks
 const clearCompletedText = document.querySelector('#clear-completed-text');

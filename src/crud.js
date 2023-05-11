@@ -54,9 +54,8 @@ export class TasksList {
   }
 
   deleteTask(id) {
-    this.filteredList = tasks.filter((task) => task.id !== parseInt(id, 10)
-    );
-    this.tasks = this.filteredList;
+    const tasks = this.getTasksFromLocalStorage() || [];
+    this.tasks = tasks.filter((task) => task.id !== parseInt(id, 10));
     this.saveTasksToLocalStorage();
     return this.tasks;
   }
@@ -65,7 +64,6 @@ export class TasksList {
     // const tasks = this.getTasksFromLocalStorage();
     const tasks = this.tasks.filter((task) => !task.completed);
     this.saveTasksToLocalStorage();
-    console.log(localStorage);
     return tasks;
   }
 }
