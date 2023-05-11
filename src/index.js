@@ -8,10 +8,24 @@ const renderTasks = () => {
 
   tasks.sort((a, b) => a.index - b.index);
 
+  const formDescription = document.getElementById('descriptionInput');
+
+  formDescription.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      todaysList.createTask(formDescription.value, task.id = tasks.length + 1);
+      formDescription.value = '';
+      todaysList.saveTasksToLocalStorage();
+      renderTasks();
+    }
+  });
+
   tasks.forEach((task) => {
     const taskId = tasks.length + 1;
     const taskCard = document.createElement('ul');
     taskCard.classList.add('task-card', 'flex', 'row');
+    taskCard.setAttribute('id', `taskCard-${taskId}`)
+
 
     const checkCompleted = document.createElement('input');
     checkCompleted.setAttribute('type', 'checkbox');
@@ -28,6 +42,7 @@ const renderTasks = () => {
     if (task.isEditing) {
       descriptionElement = document.createElement('input');
       descriptionElement.setAttribute('type', 'text');
+      descriptionElement.setAttribute('id', `description-${taskId}`);
       descriptionElement.classList.add('list-element', 'description');
       descriptionElement.value = task.description;
 
@@ -58,34 +73,33 @@ const renderTasks = () => {
     // Add nested event listener for deleting
     const taskActions = document.createElement('button');
     taskActions.classList.add('list-element', 'action');
-    taskActions.setAttribute('id', `action-${task.id}`);
+    taskActions.setAttribute('id', `action-${taskId}`);
 
     // Create a showRemove button
     // hide the showRemove Button
     // remove hidden on event listener clik
     const showRemove = document.createElement('button');
     showRemove.classList.add('list-element', 'showRemove', 'hidden');
-    showRemove.setAttribute('id', `showRemove-${task.id}`);
+    showRemove.setAttribute('id', `showRemove-${taskId}`);
 
     // Add nested event listener for deleting
     taskActions.addEventListener('click', () => {
       if (taskActions.classList.contains('action')) {
         taskActions.classList.add('hidden');
         showRemove.classList.remove('hidden');
-        showRemove.setAttribute('id', `showRemove-${task.id}`);
+        showRemove.setAttribute('id', `showRemove-${taskId}`);
         taskCard.appendChild(showRemove);
 
         // second AddEventListener comes here
-        showRemove.addEventListener('click', (e) => {
-          if (task.completed === true) {
-            const taskId = e.target.dataset.id;
-            todaysList.deleteTask(taskId);
-            const taskToRemove = document.getElementById(`data-${taskId}`);
+        showRemove.addEventListener('click', (e, tasks) => {
+          if (checkCompleted.checked) {
+            //const { taskId } = e.target.dataset;
+            todaysList.deleteTask(taskId, tasks);
+            const taskToRemove = document.getElementById(`taskCard-${taskId}`);
             if (taskToRemove) {
-              displayTasks.remove(taskToRemove);
+              displayTasks.removeChild(taskToRemove);
             }
           } else {
-            // taskCard.removeChild(showRemove);
             showRemove.classList.add('hidden');
             taskActions.classList.remove('hidden');
             taskActions.setAttribute('id', 'action');
@@ -106,21 +120,6 @@ const renderTasks = () => {
 
 window.addEventListener('load', renderTasks);
 console.log(tasks);
-
-// Add Task
-const formDescription = document.getElementById('descriptionInput');
-
-formDescription.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    todaysList.createTask(formDescription.value, task.id = tasks.length + 1);
-    formDescription.value = '';
-    todaysList.saveTasksToLocalStorage();
-    renderTasks();
-  }
-});
-
-// Update Task
 
 // All tasks
 const clearCompletedText = document.querySelector('#clear-completed-text');

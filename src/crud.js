@@ -4,7 +4,6 @@ import Task from './task.js';
 export class TasksList {
   constructor(name) {
     this.name = name;
-    this.id = this.tasks.length + 1;
     this.tasks = [];
     this.getTasksFromLocalStorage();
   }
@@ -55,12 +54,11 @@ export class TasksList {
   }
 
   deleteTask(id) {
-    this.filteredList = this.tasks.filter(
-      (task) => task.id !== parseInt(id, 10),
+    this.filteredList = tasks.filter((task) => task.id !== parseInt(id, 10)
     );
     this.tasks = this.filteredList;
     this.saveTasksToLocalStorage();
-    return this.filteredList;
+    return this.tasks;
   }
 
   deleteCompletedTasks() {
