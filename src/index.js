@@ -98,7 +98,6 @@ const renderTasks = () => {
               displayTasks.removeChild(taskToRemove);
               const tasksTodelete = [];
               tasksTodelete.push(task);
-              console.log(tasksTodelete);
             }
           } else {
             showRemove.classList.add('hidden');
