@@ -12,13 +12,10 @@ export class TasksList {
   Add local sotrage methods
     3 main methods added here
   */
-  saveTasksToLocalStorage() {
-    localStorage.setItem(this.name, JSON.stringify(this.tasks));
-  }
 
   getTasksFromLocalStorage() {
     const storedTasks = localStorage.getItem(this.name);
-    if (storedTasks) {
+    if (storedTasks !== undefined && storedTasks !== null) {
       this.tasks = JSON.parse(storedTasks).map(
         (task) => new Task(task.description, task.completed, task.id),
       );
@@ -26,8 +23,8 @@ export class TasksList {
     return this.tasks;
   }
 
-  getTaskByDescription(description) {
-    return this.tasks.filter((task) => task.description === description);
+  saveTasksToLocalStorage() {
+    localStorage.setItem(this.name, JSON.stringify(this.tasks));
   }
 
   /*
@@ -51,13 +48,6 @@ export class TasksList {
 
   updateDescription(updatedDescrition) {
     this.description = updatedDescrition;
-  }
-
-  deleteTask(id) {
-    const tasks = this.getTasksFromLocalStorage() || [];
-    this.tasks = tasks.filter((task) => task.id !== parseInt(id, 10));
-    this.saveTasksToLocalStorage();
-    return this.tasks;
   }
 
   deleteCompletedTasks(id) {

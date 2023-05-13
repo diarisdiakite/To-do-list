@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import './style.css';
 import { todaysList, tasks, task } from './crud.js';
+import deleteTask from './deleteTask.js';
+// import { saveTasksToLocalStorage } from './storage_functions.js';
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
@@ -72,7 +74,7 @@ const renderTasks = () => {
     // Add nested event listener for deleting
     const taskActions = document.createElement('button');
     taskActions.classList.add('list-element', 'action');
-    taskActions.setAttribute('id', `action-${taskId}`);
+    // taskActions.setAttribute('id', `action-${taskId}`);
 
     // Create a showRemove button
     // hide the showRemove Button
@@ -92,7 +94,7 @@ const renderTasks = () => {
         // second AddEventListener comes here
         showRemove.addEventListener('click', (e, tasks) => {
           if (checkCompleted.checked) {
-            todaysList.deleteTask(taskId, tasks);
+            deleteTask(e, taskId, tasks);
             const taskToRemove = document.getElementById(`taskCard-${taskId}`);
             if (taskToRemove) {
               displayTasks.removeChild(taskToRemove);
@@ -112,7 +114,7 @@ const renderTasks = () => {
     taskCard.appendChild(checkCompleted);
     taskCard.appendChild(descriptionElement);
     taskCard.appendChild(taskActions);
-    taskCard.appendChild(showRemove);
+    // taskCard.appendChild(showRemove);
 
     displayTasks.appendChild(taskCard);
   });
