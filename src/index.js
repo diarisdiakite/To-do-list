@@ -1,9 +1,13 @@
 import _ from 'lodash';
 import './style.css';
-import { todaysList, tasks, task } from './crud.js';
+import { todaysList, task } from './crud.js';
 import deleteTask from './modules/deleteTask.js';
 import deleteCompletedTasks from './modules/deleteAllCompleted.js';
-// import { saveTasksToLocalStorage } from './storage_functions.js';
+import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
+import { getTasksFromLocalStorage } from './modules/storage_functions.js';
+
+// const tasks = getTasksFromLocalStorage() || [];
+const tasks = getTasksFromLocalStorage('To-Do today');
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
@@ -30,6 +34,11 @@ const renderTasks = () => {
     taskCard.setAttribute('id', `taskCard-${taskId}`);
     taskCard.setAttribute('data-task-id', taskId);
 
+    const checkCompleted = createCheckbox();
+    checkCompleted.setAttribute('id', `checkbox-${taskId}`);
+    checkCompleted.addEventListener('change', checkCompletedFunction);
+
+    /*
     const checkCompleted = document.createElement('input');
     checkCompleted.setAttribute('type', 'checkbox');
     checkCompleted.classList.add('list-element', 'checkbox');
@@ -40,6 +49,7 @@ const renderTasks = () => {
       task.completed = checkCompleted.checked;
       todaysList.saveTasksToLocalStorage();
     });
+    */
 
     let descriptionElement;
     if (task.isEditing) {
