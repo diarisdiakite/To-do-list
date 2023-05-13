@@ -50,6 +50,16 @@ export class TasksList {
     this.description = updatedDescrition;
   }
 
+  
+  /*
+  deleteTask(id) {
+    const tasks = this.getTasksFromLocalStorage() || [];
+    this.tasks = tasks.filter((task) => task.id !== parseInt(id, 10));
+    this.saveTasksToLocalStorage();
+    return this.tasks;
+  }
+  */
+
   deleteCompletedTasks(id) {
     const tasks = this.getTasksFromLocalStorage() || [];
     this.tasksTodelete = [];
