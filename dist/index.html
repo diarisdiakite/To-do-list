@@ -12,13 +12,13 @@
     <div class="main-container">
       <div id="title" class="row my-bg-gray flex">
         <h1>Today's To Do</h1>
-        <div id="title-image"></div>
+        <button type="button" id="title-image"></button>
       </div>
       <!-- Form -->
       <div id="form" class="row">
         <form action="">
           <input-control>
-            <input type="text" placeholder="Add your list..." required>
+            <input id="descriptionInput" type="text" placeholder="Add your list..." required>
           </input-control>
         </form>
       </div>
@@ -32,7 +32,7 @@
 
       <!-- Delete completed -->
       <div id="clear-completed" class="row my-bg-gray">
-        <a href=""><p id="clear-completed-text"></p></a>
+        <a id="clear-completed-link" href=""><p id="clear-completed-text"></p></a>
       </div>
     </div>
   </main>
