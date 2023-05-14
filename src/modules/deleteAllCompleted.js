@@ -1,4 +1,5 @@
 import { todaysList } from './taskList.js';
+import renderTasks from '../index.js';
 
 function deleteCompletedTasks(tasks) {
   tasks = todaysList.getTasksFromLocalStorage();
@@ -7,6 +8,7 @@ function deleteCompletedTasks(tasks) {
     task.index = index + 1;
   });
   todaysList.saveTasksToLocalStorage(tasks);
+  renderTasks();
 }
 
 export default deleteCompletedTasks;

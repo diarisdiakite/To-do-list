@@ -1,4 +1,5 @@
 import { todaysList } from './taskList.js';
+import renderTasks from '../index.js';
 
 function deleteTask(taskId) {
   const tasks = todaysList.getTasksFromLocalStorage();
@@ -9,6 +10,7 @@ function deleteTask(taskId) {
     task.index = index + 1;
   });
   todaysList.saveTasksToLocalStorage(tasks);
+  renderTasks();
 }
 
 export default deleteTask;

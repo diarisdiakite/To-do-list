@@ -5,8 +5,6 @@ import deleteTask from './modules/deleteTask.js';
 import deleteCompletedTasks from './modules/deleteAllCompleted.js';
 import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
 
-// const tasks = todaysList.getTasksFromLocalStorage() || [];
-
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
   displayTasks.innerHTML = '';
@@ -31,12 +29,11 @@ const renderTasks = () => {
     taskCard.classList.add('task-card', 'flex', 'row');
     taskCard.setAttribute('id', `taskCard-${taskId}`);
     taskCard.setAttribute('data-task-id', taskId);
-
-    const checkCompleted = createCheckbox();
-    checkCompleted.setAttribute('id', `checkbox-${taskId}`);
-    checkCompleted.addEventListener('change', checkCompletedFunction);
-
-    /*
+ 
+    const checkCompleted = createCheckbox(task.id);
+    checkCompleted.checked = task.completed;
+    checkCompletedFunction(task, checkCompleted, todaysList);
+  /* 
     const checkCompleted = document.createElement('input');
     checkCompleted.setAttribute('type', 'checkbox');
     checkCompleted.classList.add('list-element', 'checkbox');
@@ -47,7 +44,7 @@ const renderTasks = () => {
       task.completed = checkCompleted.checked;
       todaysList.saveTasksToLocalStorage();
     });
-    */
+  */  
 
     let descriptionElement;
     if (task.isEditing) {
@@ -130,8 +127,6 @@ const renderTasks = () => {
 
     displayTasks.appendChild(taskCard);
 
-    const mainContainer = document.getElementsByClassName('main-container');
-    mainContainer.append(displayTasks);
   });
 };
 renderTasks();
@@ -145,3 +140,5 @@ clearCompletedText.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
 // Delete All completed Tasks
 const clearAllCompleted = document.getElementById('clear-completed-link');
 clearAllCompleted.addEventListener('click', deleteCompletedTasks);
+
+export default renderTasks;
