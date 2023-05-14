@@ -36,6 +36,6 @@ export class TasksList {
 }
 
 export const todaysList = new TasksList('To-Do today');
-const tasks = todaysList.getTasksFromLocalStorage() ?? [];
+const tasks = todaysList.getTasksFromLocalStorage() || [];
 const task = new Task('my task');
 export { tasks, task };

@@ -129,6 +129,9 @@ const renderTasks = () => {
     // taskCard.appendChild(showRemove);
 
     displayTasks.appendChild(taskCard);
+
+    const mainContainer = document.getElementsByClassName('main-container');
+    mainContainer.append(displayTasks);
   });
 };
 renderTasks();
