@@ -80,7 +80,9 @@ client: HTML, CSS and Javascript.
 
 ## 🚀 <a name="live-demo"> Live Demo </a>
 
-[Live Demo](comingsoon)
+You can access the To-DO list at this link below.
+
+[Live Demo](https://diarisdiakite.github.io/To-do-list/dist/)
 
 ([`Back-to-top`](#readme-top))
 
