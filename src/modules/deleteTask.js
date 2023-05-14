@@ -1,14 +1,14 @@
-import { getTasksFromLocalStorage, saveTasksToLocalStorage } from './storage_functions.js';
+import { todaysList } from './taskList.js';
 
 function deleteTask(taskId) {
-  const tasks = getTasksFromLocalStorage();
+  const tasks = todaysList.getTasksFromLocalStorage();
   // const taskToremove = tasks.filter((task) => task.id === taskId && task.completed===true)
   // console.log(taskToremove);
   tasks.splice(taskId, 1);
   tasks.forEach((task, index) => {
     task.index = index + 1;
   });
-  saveTasksToLocalStorage(tasks);
+  todaysList.saveTasksToLocalStorage(tasks);
 }
 
 export default deleteTask;

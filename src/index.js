@@ -1,13 +1,11 @@
 import _ from 'lodash';
 import './style.css';
-import { todaysList, task } from './crud.js';
+import { todaysList, tasks, task } from './modules/taskList.js';
 import deleteTask from './modules/deleteTask.js';
 import deleteCompletedTasks from './modules/deleteAllCompleted.js';
 import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
-import { getTasksFromLocalStorage } from './modules/storage_functions.js';
 
-// const tasks = getTasksFromLocalStorage() || [];
-const tasks = getTasksFromLocalStorage('To-Do today');
+// const tasks = todaysList.getTasksFromLocalStorage() || [];
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
@@ -133,8 +131,9 @@ const renderTasks = () => {
     displayTasks.appendChild(taskCard);
   });
 };
+renderTasks();
 
-window.addEventListener('load', renderTasks);
+// window.addEventListener('load', renderTasks);
 
 // All tasks
 const clearCompletedText = document.querySelector('#clear-completed-text');

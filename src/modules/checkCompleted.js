@@ -1,5 +1,5 @@
-import { task } from '../crud.js';
-import { saveTasksToLocalStorage } from './storage_functions.js';
+import task from './task.js';
+import { todaysList } from './taskList.js';
 
 export const createCheckbox = () => {
   const checkCompleted = document.createElement('input');
@@ -10,7 +10,7 @@ export const createCheckbox = () => {
 
 export const checkCompletedFunction = (task, checkCompleted) => {
   task.completed = checkCompleted.checked;
-  saveTasksToLocalStorage();
+  todaysList.saveTasksToLocalStorage();
 };
 
 /*
