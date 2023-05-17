@@ -1,14 +1,10 @@
-import { todaysList } from './taskList.js';
-import renderTasks from '../index.js';
+import { todaysList, tasks } from './taskList.js';
 
-function deleteCompletedTasks(tasks) {
-  tasks = todaysList.getTasksFromLocalStorage();
-  tasks = tasks.filter((task) => !task.completed);
-  tasks.forEach((task, index) => {
-    task.index = index + 1;
-  });
-  todaysList.saveTasksToLocalStorage(tasks);
-  renderTasks();
-}
+const deleteCompletedTasks = () => {
+  const incompleteTasks = tasks.filter((task) => !task.completed);
+  tasks.length = 0; 
+  tasks.push(...incompleteTasks); 
+  todaysList.saveTasksToLocalStorage();
+};
 
 export default deleteCompletedTasks;

@@ -1,5 +1,5 @@
 import Task from './task.js';
-import renderTasks from '../index.js';
+// import renderTasks from '../index.js';
 
 // Create tasksList class
 export class TasksList {
@@ -13,7 +13,9 @@ export class TasksList {
   getTasksFromLocalStorage() {
     const storedTasks = localStorage.getItem(this.name);
     if (storedTasks) {
-      this.tasks = JSON.parse(storedTasks).map((task) => new Task(task.description, task.completed, task.id));
+      this.tasks = JSON.parse(storedTasks).map(
+        (task) => new Task(task.description, task.completed, task.id),
+      );
     }
     return this.tasks;
   }
@@ -22,8 +24,6 @@ export class TasksList {
     localStorage.setItem(this.name, JSON.stringify(this.tasks));
   }
 
-  
-
   // to modularize but after checkbox
   createTask(description) {
     const error = 'Please provide a description';
@@ -31,9 +31,10 @@ export class TasksList {
       const task = new Task(description, false, this.tasks.length + 1);
       this.tasks.push(task);
       this.saveTasksToLocalStorage();
-      renderTasks();
-      return this.tasks;
+      // return this.tasks;
+      // renderTasks();
     }
+    // renderTasks();
     return error;
   }
 }

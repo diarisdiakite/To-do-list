@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import { todaysList, tasks, task } from './modules/taskList.js';
+import { todaysList, tasks } from './modules/taskList.js';
 import deleteTask from './modules/deleteTask.js';
 import deleteCompletedTasks from './modules/deleteAllCompleted.js';
 import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
@@ -16,7 +16,7 @@ const renderTasks = () => {
   formDescription.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      todaysList.createTask(formDescription.value, task.id = tasks.length + 1);
+      todaysList.createTask(formDescription.value);
       formDescription.value = '';
       todaysList.saveTasksToLocalStorage();
       renderTasks();
@@ -24,16 +24,16 @@ const renderTasks = () => {
   });
 
   tasks.forEach((task) => {
-    const taskId = tasks.length + 1;
-    const taskCard = document.createElement('ul');
+    const taskId = task.id;
+    const taskCard = document.createElement('li');
     taskCard.classList.add('task-card', 'flex', 'row');
     taskCard.setAttribute('id', `taskCard-${taskId}`);
-    taskCard.setAttribute('data-task-id', taskId);
- 
+    // taskCard.setAttribute('data-task-id', taskId);
+
     const checkCompleted = createCheckbox(task.id);
     checkCompleted.checked = task.completed;
     checkCompletedFunction(task, checkCompleted, todaysList);
-  /* 
+    /*
     const checkCompleted = document.createElement('input');
     checkCompleted.setAttribute('type', 'checkbox');
     checkCompleted.classList.add('list-element', 'checkbox');
@@ -44,7 +44,7 @@ const renderTasks = () => {
       task.completed = checkCompleted.checked;
       todaysList.saveTasksToLocalStorage();
     });
-  */  
+  */
 
     let descriptionElement;
     if (task.isEditing) {
@@ -83,41 +83,27 @@ const renderTasks = () => {
     taskActions.classList.add('list-element', 'action');
     taskActions.setAttribute('id', `action-${taskId}`);
 
-    // Create a showRemove button
-    // hide the showRemove Button
-    // remove hidden on event listener clik
-    const showRemove = document.createElement('button');
-    showRemove.classList.add('list-element', 'showRemove', 'hidden');
-    showRemove.setAttribute('id', `showRemove-${taskId}`);
-
     // Add nested event listener for deleting
-    taskActions.addEventListener('click', () => {
+    taskActions.addEventListener('mouseover', () => {
       if (taskActions.classList.contains('action')) {
-        taskActions.classList.add('hidden');
-        showRemove.classList.remove('hidden');
-        showRemove.setAttribute('id', `showRemove-${taskId}`);
-        showRemove.setAttribute('data-task-id', taskId); // added line
-        taskCard.appendChild(showRemove);
+        taskActions.classList.remove('action');
+        taskActions.classList.add('showRemove');
+        taskCard.classList.add('blurred');
 
         // second AddEventListener comes here
-        showRemove.addEventListener('click', (e) => {
-          const id = taskCard.dataset.taskId;
-          // eslint-disable-next-line eqeqeq
-          const taskToRemove = tasks.find((task) => taskId == id && task.completed);
-          if (taskToRemove) {
-            deleteTask(e, `taskCard-${id}`, tasks, `showRemove-${id}`);
-            tasks.splice(tasks.indexOf(taskToRemove), 1);
-            todaysList.saveTasksToLocalStorage();
-            renderTasks();
-          } else {
-            showRemove.classList.add('hidden');
-            taskActions.classList.remove('hidden');
-            taskActions.setAttribute('id', 'action');
-          }
-        });
-
-        taskActions.setAttribute('id', 'action');
       }
+      taskActions.addEventListener('mouseout', () => {
+        taskCard.classList.remove('blurred');
+        taskActions.classList.remove('showRemove');
+        taskActions.classList.add('action');
+        taskActions.setAttribute('id', 'action');
+      });
+    });
+
+    // THIS ONE IS RESPONDING
+    taskActions.addEventListener('click', (e) => {
+      deleteTask(e, tasks, task);
+      renderTasks();
     });
 
     taskCard.appendChild(checkCompleted);
@@ -126,12 +112,11 @@ const renderTasks = () => {
     // taskCard.appendChild(showRemove);
 
     displayTasks.appendChild(taskCard);
-
   });
 };
 renderTasks();
 
-// window.addEventListener('load', renderTasks);
+window.addEventListener('load', renderTasks);
 
 // All tasks
 const clearCompletedText = document.querySelector('#clear-completed-text');

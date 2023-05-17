@@ -1,5 +1,4 @@
-import Task from './task.js';
-import { todaysList, tasks, task } from './taskList.js';
+import { todaysList, task } from './taskList.js';
 
 export const createCheckbox = (taskId) => {
   const checkCompleted = document.createElement('input');
@@ -10,28 +9,9 @@ export const createCheckbox = (taskId) => {
   return checkCompleted;
 };
 
-export const checkCompletedFunction = (task, checkCompletedElement, tasksList) => {
+export const checkCompletedFunction = (task, checkCompletedElement) => {
   checkCompletedElement.addEventListener('change', () => {
-    task.completed = checkCompletedElement.value === 'on';
+    task.completed = checkCompletedElement.checked;
     todaysList.saveTasksToLocalStorage();
   });
 };
-
-
-/*
-export const checkCompletedFunction = (task, checkCompleted) => {
-  task.completed = checkCompleted.checked;
-  todaysList.saveTasksToLocalStorage();
-};
-
-
-const checkCompletedFunction = (task, checkCompletedElement, tasksList) => {
-  checkCompletedElement.addEventListener('change', () => {
-    task.completed = checkCompletedElement.checked;
-    saveTasksToLocalStorage();
-  });
-};
-
-export default checkCompletedFunction;
-
-*/

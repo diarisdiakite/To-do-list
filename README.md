@@ -8,7 +8,6 @@
 🛠 [Built With](#built-with)
 
 - [Tech Stack](#tech-stack)
-
 - [Key Features](#key-features)
 
 🚀 [Live Demo](#live-demo)
@@ -16,15 +15,10 @@
 💻 [Getting Started](#getting-started)
 
 - [Setup](#setup)
-
 - [Prerequisites](#prerequisites)
-
 - [Install](#install)
-
 - [Usage](#usage)
-
 - [Run tests](#run-test)
-
 - [Deployment](#deployment)
 
 👥 [Authors](#authors)

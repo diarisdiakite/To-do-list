@@ -1,16 +1,13 @@
 import { todaysList } from './taskList.js';
-import renderTasks from '../index.js';
 
-function deleteTask(taskId) {
-  const tasks = todaysList.getTasksFromLocalStorage();
-  // const taskToremove = tasks.filter((task) => task.id === taskId && task.completed===true)
-  // console.log(taskToremove);
-  tasks.splice(taskId, 1);
-  tasks.forEach((task, index) => {
-    task.index = index + 1;
-  });
-  todaysList.saveTasksToLocalStorage(tasks);
-  renderTasks();
-}
+const deleteTask = (e, tasks, task) => {
+  const taskIndex = tasks.indexOf(task);
+  if (taskIndex > -1) {
+    tasks.splice(taskIndex, 1);
+    todaysList.saveTasksToLocalStorage(tasks);
+    const listItem = e.target.closest('.list-element');
+    listItem.remove();
+  }
+};
 
 export default deleteTask;
