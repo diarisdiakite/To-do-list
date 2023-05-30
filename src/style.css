@@ -92,7 +92,7 @@ input::placeholder {
 
 .blurred {
   font-style: italic;
-  text-decoration: dashed;
+  text-decoration: line-through;
   background-color: rgb(245, 232, 227);
 }
 
