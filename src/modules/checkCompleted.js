@@ -1,4 +1,5 @@
-import { todaysList, task } from './taskList.js';
+import { todaysList } from './taskList.js';
+import task from './createTask.js';
 
 export const createCheckbox = (taskId) => {
   const checkCompleted = document.createElement('input');

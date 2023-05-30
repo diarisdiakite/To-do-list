@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import './style.css';
 import { todaysList, tasks } from './modules/taskList.js';
+//import task from './modules/createTask';
 import deleteTask from './modules/deleteTask.js';
 import deleteCompletedTasks from './modules/deleteAllCompleted.js';
 import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
