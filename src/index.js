@@ -22,6 +22,16 @@ const tasks = [
     description: 'Commit and push',
     completed: true,
   },
+  {
+    index: 5,
+    description: 'Set project 2: Add CRUD',
+    completed: true,
+  },
+  {
+    index: 7,
+    description: 'Set project 3: Add interactive',
+    completed: true,
+  },
 ];
 
 const renderTasks = () => {
