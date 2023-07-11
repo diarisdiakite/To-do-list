@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import './style.css';
-import { todaysList, tasks, task } from './crud.js';
+import { todaysList, tasks } from './modules/taskList.js';
+import deleteTask from './modules/deleteTask.js';
+import { createCheckbox } from './modules/checkbox.js';
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
@@ -13,7 +15,7 @@ const renderTasks = () => {
   formDescription.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      todaysList.createTask(formDescription.value, task.id = tasks.length + 1);
+      todaysList.createTask(formDescription.value);
       formDescription.value = '';
       todaysList.saveTasksToLocalStorage();
       renderTasks();
@@ -21,22 +23,14 @@ const renderTasks = () => {
   });
 
   tasks.forEach((task) => {
-    const taskId = tasks.length + 1;
-    const taskCard = document.createElement('ul');
+    const taskId = task.id;
+    const taskCard = document.createElement('li');
     taskCard.classList.add('task-card', 'flex', 'row');
     taskCard.setAttribute('id', `taskCard-${taskId}`);
-
-    const checkCompleted = document.createElement('input');
-    checkCompleted.setAttribute('type', 'checkbox');
-    checkCompleted.classList.add('list-element', 'checkbox');
-    checkCompleted.setAttribute('id', `checkbox-${taskId}`);
+    
+    const checkCompleted = createCheckbox(task.id);
     checkCompleted.checked = task.completed;
-
-    checkCompleted.addEventListener('change', () => {
-      task.completed = checkCompleted.checked;
-      todaysList.saveTasksToLocalStorage();
-    });
-
+    
     let descriptionElement;
     if (task.isEditing) {
       descriptionElement = document.createElement('input');
@@ -74,49 +68,38 @@ const renderTasks = () => {
     taskActions.classList.add('list-element', 'action');
     taskActions.setAttribute('id', `action-${taskId}`);
 
-    // Create a showRemove button
-    // hide the showRemove Button
-    // remove hidden on event listener clik
-    const showRemove = document.createElement('button');
-    showRemove.classList.add('list-element', 'showRemove', 'hidden');
-    showRemove.setAttribute('id', `showRemove-${taskId}`);
-
     // Add nested event listener for deleting
-    taskActions.addEventListener('click', () => {
+    taskActions.addEventListener('mouseover', () => {
       if (taskActions.classList.contains('action')) {
-        taskActions.classList.add('hidden');
-        showRemove.classList.remove('hidden');
-        showRemove.setAttribute('id', `showRemove-${taskId}`);
-        taskCard.appendChild(showRemove);
+        taskActions.classList.remove('action');
+        taskActions.classList.add('showRemove');
+        taskCard.classList.add('blurred');
 
         // second AddEventListener comes here
-        showRemove.addEventListener('click', (e, tasks) => {
-          if (checkCompleted.checked) {
-            todaysList.deleteTask(taskId, tasks);
-            const taskToRemove = document.getElementById(`taskCard-${taskId}`);
-            if (taskToRemove) {
-              displayTasks.removeChild(taskToRemove);
-              const tasksTodelete = [];
-              tasksTodelete.push(task);
-            }
-          } else {
-            showRemove.classList.add('hidden');
-            taskActions.classList.remove('hidden');
-            taskActions.setAttribute('id', 'action');
-          }
-        });
-        taskActions.setAttribute('id', 'action');
       }
+      taskActions.addEventListener('mouseout', () => {
+        taskCard.classList.remove('blurred');
+        taskActions.classList.remove('showRemove');
+        taskActions.classList.add('action');
+        taskActions.setAttribute('id', 'action');
+      });
+    });
+
+    // THIS ONE IS RESPONDING
+    taskActions.addEventListener('click', (e) => {
+      deleteTask(e, tasks, task);
+      renderTasks();
     });
 
     taskCard.appendChild(checkCompleted);
     taskCard.appendChild(descriptionElement);
     taskCard.appendChild(taskActions);
-    taskCard.appendChild(showRemove);
+    // taskCard.appendChild(showRemove);
 
     displayTasks.appendChild(taskCard);
   });
 };
+renderTasks();
 
 window.addEventListener('load', renderTasks);
 
@@ -124,6 +107,5 @@ window.addEventListener('load', renderTasks);
 const clearCompletedText = document.querySelector('#clear-completed-text');
 clearCompletedText.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
 
-// Delete All completed Tasks
-/* const clearAllCompleted = document.getElementById('clear-completed-link');
-clearAllCompleted.addEventListener('click', todaysList.deleteCompletedTasks); */
+
+export default renderTasks;
