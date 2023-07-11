@@ -125,5 +125,5 @@ const clearCompletedText = document.querySelector('#clear-completed-text');
 clearCompletedText.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
 
 // Delete All completed Tasks
-const clearAllCompleted = document.getElementById('clear-completed-link');
-clearAllCompleted.addEventListener('click', todaysList.deleteCompletedTasks);
+/* const clearAllCompleted = document.getElementById('clear-completed-link');
+clearAllCompleted.addEventListener('click', todaysList.deleteCompletedTasks); */
