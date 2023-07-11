@@ -3,7 +3,7 @@ import './style.css';
 import { todaysList, tasks } from './modules/taskList.js';
 import deleteTask from './modules/deleteTask.js';
 import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
-import deleteCompletedTasks from './modules/deleteAllCompleted';
+import deleteCompletedTasks from './modules/deleteAllCompleted.js';
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');

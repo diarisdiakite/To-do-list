@@ -15,4 +15,3 @@ export const checkCompletedFunction = (task, checkCompletedElement) => {
     todaysList.saveTasksToLocalStorage();
   });
 };
-
