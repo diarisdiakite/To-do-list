@@ -11,7 +11,7 @@
 
 - [Key Features](#key-features)
 
-🚀 [Live Demo](#live-demo)
+
 
 💻 [Getting Started](#getting-started)
 
@@ -78,11 +78,7 @@ client: HTML, CSS and Javascript.
 
 ([`Back-to-top`](#readme-top))
 
-## 🚀 <a name="live-demo"> Live Demo </a>
 
-[Live Demo](comingsoon)
-
-([`Back-to-top`](#readme-top))
 
 # 💻 <a name="getting-started"> Getting Started </a>
 

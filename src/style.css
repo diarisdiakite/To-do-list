@@ -32,10 +32,11 @@
 /* MAIN CONTAINER */
 
 .main-container {
-  width: 50%;
+  width: 40%;
   margin: 5% auto;
   border: 1px solid var(--my-gray-color);
   background-color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 ul {
@@ -46,8 +47,8 @@ ul {
 }
 
 .row {
-  border-top: 1px solid var(--my-gray-color);
   border-bottom: 1px solid var(--my-gray-color);
+  padding: 1.2% 0;
 }
 
 /* Title DIV */
@@ -66,8 +67,14 @@ ul {
 
 #title-image {
   width: 5%;
-  background: url(images/circle.jpg) no-repeat;
+  background: url(images/circle.png) no-repeat center;
   background-size: 60%;
+  border: 0;
+}
+
+#title-image:hover {
+  opacity: 80%;
+  cursor: pointer;
 }
 
 /* Form DIV */
@@ -78,26 +85,57 @@ input {
 
 input::placeholder {
   font-style: italic;
+  padding-left: 1%;
 }
 
 /* Display-tasks DIV */
-#checkbox {
+
+.blurred {
+  font-style: italic;
+  text-decoration: dashed;
+  background-color: rgb(245, 232, 227);
+}
+
+.checkbox {
   width: 3%;
   margin-bottom: 0;
   margin-left: 0;
   text-align: left;
 }
 
-#description {
+li .checkbox:checked {
+  background-color: red;
+}
+
+.description {
   margin-left: 1%;
   width: 92%;
   align-self: center;
+  background-color: transparent;
 }
 
-#action {
+.action {
   width: 5%;
-  background: url(images/dots.webp) no-repeat;
-  background-size: 60%;
+  background: url(images/dots.webp) no-repeat center;
+  background-size: 50%;
+  border: 0;
+}
+
+.showRemove {
+  width: 5%;
+  background: url(images/delete.png) no-repeat center;
+  background-size: 50%;
+  border: 0;
+}
+
+.showRemove:hover,
+.action:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 /* Clear all completed DIV */
