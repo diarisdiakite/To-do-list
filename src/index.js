@@ -2,7 +2,8 @@ import _ from 'lodash';
 import './style.css';
 import { todaysList, tasks } from './modules/taskList.js';
 import deleteTask from './modules/deleteTask.js';
-import createCheckbox from './modules/checkbox.js';
+import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
+import deleteCompletedTasks from './modules/deleteAllCompleted';
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
@@ -30,6 +31,7 @@ const renderTasks = () => {
 
     const checkCompleted = createCheckbox(task.id);
     checkCompleted.checked = task.completed;
+    checkCompletedFunction(task, checkCompleted, todaysList);
 
     let descriptionElement;
     if (task.isEditing) {
@@ -106,5 +108,9 @@ window.addEventListener('load', renderTasks);
 // All tasks
 const clearCompletedText = document.querySelector('#clear-completed-text');
 clearCompletedText.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
+
+// Delete All completed Tasks
+const clearAllCompleted = document.getElementById('clear-completed-link');
+clearAllCompleted.addEventListener('click', deleteCompletedTasks);
 
 export default renderTasks;
