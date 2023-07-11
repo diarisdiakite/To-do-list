@@ -8,13 +8,18 @@ const tasks = [
     completed: true,
   },
   {
-    index: 1,
+    index: 2,
     description: 'Create js file and add js code',
     completed: true,
   },
   {
-    index: 1,
+    index: 3,
     description: 'Create css file and add styling elements',
+    completed: true,
+  },
+  {
+    index: 4,
+    description: 'Commit and push',
     completed: true,
   },
 ];
