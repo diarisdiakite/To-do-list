@@ -1,6 +1,6 @@
-import { todaysList, task } from './taskList.js';
+import { task } from './taskList.js';
 
-export const createCheckbox = (taskId) => {
+const createCheckbox = (taskId) => {
   const checkCompleted = document.createElement('input');
   checkCompleted.setAttribute('type', 'checkbox');
   checkCompleted.classList.add('list-element', 'checkbox');
@@ -8,3 +8,5 @@ export const createCheckbox = (taskId) => {
   checkCompleted.checked = task.completed;
   return checkCompleted;
 };
+
+export default createCheckbox;

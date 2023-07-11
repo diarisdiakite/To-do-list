@@ -2,7 +2,7 @@ import _ from 'lodash';
 import './style.css';
 import { todaysList, tasks } from './modules/taskList.js';
 import deleteTask from './modules/deleteTask.js';
-import { createCheckbox } from './modules/checkbox.js';
+import createCheckbox from './modules/checkbox.js';
 
 const renderTasks = () => {
   const displayTasks = document.getElementById('display-list');
@@ -27,10 +27,10 @@ const renderTasks = () => {
     const taskCard = document.createElement('li');
     taskCard.classList.add('task-card', 'flex', 'row');
     taskCard.setAttribute('id', `taskCard-${taskId}`);
-    
+
     const checkCompleted = createCheckbox(task.id);
     checkCompleted.checked = task.completed;
-    
+
     let descriptionElement;
     if (task.isEditing) {
       descriptionElement = document.createElement('input');
@@ -106,6 +106,5 @@ window.addEventListener('load', renderTasks);
 // All tasks
 const clearCompletedText = document.querySelector('#clear-completed-text');
 clearCompletedText.innerHTML = _.join(['Clear', 'all', 'completed'], ' ');
-
 
 export default renderTasks;
