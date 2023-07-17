@@ -69,15 +69,12 @@ const renderTasks = () => {
     const taskActions = document.createElement('button');
     taskActions.classList.add('list-element', 'action');
     taskActions.setAttribute('id', `action-${taskId}`);
-
-    // Add nested event listener for deleting
+    
     taskActions.addEventListener('mouseover', () => {
       if (taskActions.classList.contains('action')) {
         taskActions.classList.remove('action');
         taskActions.classList.add('showRemove');
         taskCard.classList.add('blurred');
-
-        // second AddEventListener comes here
       }
       taskActions.addEventListener('mouseout', () => {
         taskCard.classList.remove('blurred');
@@ -87,7 +84,6 @@ const renderTasks = () => {
       });
     });
 
-    // THIS ONE IS RESPONDING
     taskActions.addEventListener('click', (e) => {
       deleteTask(e, tasks, task);
       renderTasks();

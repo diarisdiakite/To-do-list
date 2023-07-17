@@ -90,7 +90,7 @@ You can access the To-DO list at this link below.
 Clone this repository to your desired folder:
 
 ```sh
-git clone https://github.com/diarisdiakite/to-do-list_React/
+git clone https://github.com/diarisdiakite/to-do-list/
 
 ```
 [`Back to top`](#readme-top)
@@ -107,7 +107,7 @@ Basics understanding of Linters
 Install the project with: [npm](https://www.npmjs.com/)
 
 ```[npm]
-git clone https://github.com/diarisdiakite/to-do-list_React/
+git clone https://github.com/diarisdiakite/to-do-list/
 
 run npx json-server -p 3500 -w data/db.json
 ```
@@ -133,9 +133,9 @@ You can deploy the to-do list application using: google cloud, Microsoft Azure, 
 
 👤 Didy
 
-GitHub: [github.com/diarisdiakite]()
-<br> Twitter: [@diarisdiakite]()
-<br>LinkedIn: [LinkedInhttps://www.linkedin.com/in/diariatou-diakite-67ab80165/]()
+GitHub: [@diarisd](github.com/diarisdiakite)
+<br> Twitter: [@diarisdiakite](www.twitter.com/diarisdiakite)
+<br> LinkedIn: [https://www.linkedin.com/in/diariatou-diakite-67ab80165/]()
 <br><br>
 
 [`Back to top`](#readme-top)
@@ -156,7 +156,7 @@ Please check the issues page.
 [`Back to top`](#readme-top)
 
 ## ⭐️ <a name="show-your-support">Show your support</a>
-If you like my [capstone] you can support my work. Visit my personal page www.didy-developer.me.
+If you like my [To-do-list]() you can support my work. Visit [my personal page](https://diarisdiakite.github.io/my-portfolio/).
 Please follow us on [@linkedin.com/diarisd]() and [@twitter.com/diarisd]()
 
 [`Back to top`](#readme-top)
@@ -179,12 +179,12 @@ Yes! Make sure you give us credit of the application.
 ### `Where can we reach out to you ?`
 
 #### `Answer`
-You can reach out to the organisation team by email [info@simple-apps.org](info@simple-apps.org). 
+You can reach out to the organisation team by email [diarisdiakite@gmail.com](diarisdiakite@gmail.com). 
 
 [`Back to top`](#readme-top)
 
 ## 📝 <a name="credit">Credit</a>
-this application was build by [simple-apps-team](https://link) proudly developed in [Microverse](https://www.microverse.org) program. 
+this application was build by [Didy](https://diarisdiakite.github.io/my-portfolio/) proudly developed in [Microverse](https://www.microverse.org) program. 
 
 [`Back to top`](#readme-top)
 

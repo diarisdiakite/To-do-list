@@ -4,8 +4,4 @@ export default class Task {
     this.completed = completed;
     this.id = id;
   }
-
-  displayTask() {
-    return `${this.description}, ${this.id}`;
-  }
 }
