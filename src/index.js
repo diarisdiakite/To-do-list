@@ -96,7 +96,7 @@ const renderTasks = () => {
     taskCard.appendChild(checkCompleted);
     taskCard.appendChild(descriptionElement);
     taskCard.appendChild(taskActions);
-    
+
     displayTasks.appendChild(taskCard);
   });
 };
