@@ -40,7 +40,7 @@
 <br><br>
 
 ## 📖 [My-to-do-list](#my-to-do-list)
-### 📖 <a name="about-the-project">About the Project </a>
+### 📖 <a name="about-the-project">Description </a>
 
 [My-to-do-list] is a Single Page App that allows users to create lists of tasks in an online application and perform basics operations like list all tasks and delete a task from the application.
 
@@ -84,9 +84,9 @@ You can access the To-DO list at this link below.
 [`Back to top`](#readme-top)
 
 
-# 💻 <a name="getting-started"> Getting Started </a>
+## 💻 <a name="getting-started"> Getting Started </a>
 
-## <a name="setup"> Setup </a>
+### <a name="setup"> Setup </a>
 Clone this repository to your desired folder:
 
 ```sh
@@ -95,7 +95,7 @@ git clone https://github.com/diarisdiakite/to-do-list_React/
 ```
 [`Back to top`](#readme-top)
 
-### <a name="prerequisites"> Prerequisites</a>
+#### <a name="prerequisites"> Prerequisites</a>
 In order to run the projects on this project you need:
 Have some knowledge of HTML and CSS
 Be familiar with git commands
