@@ -1,4 +1,4 @@
-import Task from './task.js';
+import Task from './Task.js';
 
 // Create tasksList class
 export class TasksList {

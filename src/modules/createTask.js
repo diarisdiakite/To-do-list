@@ -1,5 +1,5 @@
-import Task from './task.js';
-import { todaysList, tasks } from './taskList.js';
+import Task from './Task.js';
+import { todaysList, tasks } from './TaskList.js';
 
 const createTask = (description) => {
   const error = 'Please provide a description';
