@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import './style.css';
-import { todaysList, tasks } from './modules/taskList.js';
+import { todaysList, tasks } from './modules/TasksList.js';
+import createTask from './modules/createTask.js';
 import deleteTask from './modules/deleteTask.js';
 import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
 import deleteCompletedTasks from './modules/deleteAllCompleted.js';
@@ -16,7 +17,7 @@ const renderTasks = () => {
   formDescription.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      todaysList.createTask(formDescription.value);
+      createTask(formDescription.value);
       formDescription.value = '';
       todaysList.saveTasksToLocalStorage();
       renderTasks();
@@ -70,14 +71,11 @@ const renderTasks = () => {
     taskActions.classList.add('list-element', 'action');
     taskActions.setAttribute('id', `action-${taskId}`);
 
-    // Add nested event listener for deleting
     taskActions.addEventListener('mouseover', () => {
       if (taskActions.classList.contains('action')) {
         taskActions.classList.remove('action');
         taskActions.classList.add('showRemove');
         taskCard.classList.add('blurred');
-
-        // second AddEventListener comes here
       }
       taskActions.addEventListener('mouseout', () => {
         taskCard.classList.remove('blurred');
@@ -87,7 +85,6 @@ const renderTasks = () => {
       });
     });
 
-    // THIS ONE IS RESPONDING
     taskActions.addEventListener('click', (e) => {
       deleteTask(e, tasks, task);
       renderTasks();
@@ -96,7 +93,6 @@ const renderTasks = () => {
     taskCard.appendChild(checkCompleted);
     taskCard.appendChild(descriptionElement);
     taskCard.appendChild(taskActions);
-    // taskCard.appendChild(showRemove);
 
     displayTasks.appendChild(taskCard);
   });
