@@ -1,4 +1,4 @@
-import { todaysList } from './TaskList.js';
+import { todaysList } from './TasksList.js';
 
 const deleteTask = (e, tasks, task) => {
   const taskIndex = tasks.indexOf(task);

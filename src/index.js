@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import { todaysList, tasks } from './modules/TaskList.js';
+import { todaysList, tasks } from './modules/TasksList.js';
 import createTask from './modules/createTask.js';
 import deleteTask from './modules/deleteTask.js';
 import { createCheckbox, checkCompletedFunction } from './modules/checkCompleted.js';
