@@ -1,5 +1,4 @@
-import { tasks } from "./tasks";
-
+import { tasks } from './tasks.js';
 
 export const listLength = tasks.length;
 export const deleteTask = (tasks, task) => {
@@ -11,6 +10,5 @@ export const deleteTask = (tasks, task) => {
   }
   return tasks;
 };
-
 
 export default deleteTask;

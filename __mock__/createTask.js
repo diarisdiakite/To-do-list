@@ -1,17 +1,17 @@
 import Task, { tasks } from './tasks.js';
 
+const createTask = (myMockDescription) => {
+  // const description = e.target.value.trim();
 
-const createTask = (my_mock_description) => {
-  //const description = e.target.value.trim();
-  
-  if (my_mock_description === ''){
-    return "Please type a description for the new task"
-  }else if (/* e.key === 'Enter' && */ my_mock_description !== '') {
-    const task = new Task(my_mock_description);
+  if (myMockDescription === '') {
+    return 'Please type a description for the new task';
+  } if (/* e.key === 'Enter' && */ myMockDescription !== '') {
+    const task = new Task(myMockDescription);
     const updatedTasks = [...tasks, task];
     /* e.target.value = ''; */
     return updatedTasks;
   }
+  return null;
 };
 
 export default createTask;
