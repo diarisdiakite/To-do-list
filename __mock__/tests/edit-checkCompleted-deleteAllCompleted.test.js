@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 import { tasks } from '../tasks.js';
-import deleteCompletedTasks from '../deleteAllCompleted.js';
+import deleteCompletedTasks from '../deleteCompletedTasks.js';
 import { createCheckbox, editCompleted } from '../checkCompletedTask.js';
 //import editTask from '../editTask.js';
 
