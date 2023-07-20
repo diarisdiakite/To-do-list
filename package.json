@@ -30,7 +30,9 @@
   },
   "dependencies": {
     "jest": "^29.6.1",
-    "lodash": "^4.17.21"
+    "jsdom": "^22.1.0",
+    "lodash": "^4.17.21",
+    "node-localstorage": "^2.2.1"
   },
   "main": "webpack.config.js",
   "description": ""
