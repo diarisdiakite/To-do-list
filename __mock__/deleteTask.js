@@ -1,4 +1,4 @@
-import { tasks } from './tasks.js';
+import { tasks } from './Tasks.js';
 
 export const listLength = tasks.length;
 export const deleteTask = (tasks, task) => {
