@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom';
-import { todaysList, tasks } from '../TasksList.js';
+import { tasks } from '../TasksList.js';
 import deleteCompletedTasks from '../deleteCompletedTasks.js';
 import { checkCompletedFunction, createCheckbox, editCompleted } from '../checkCompletedTask.js';
 import editTask from '../editTask.js';
@@ -12,9 +12,6 @@ beforeEach(() => {
     getItem: jest.fn(() => JSON.stringify(tasks)),
     setItem: jest.fn(),
   };
-
-
-
 });
 
 const mockTask = tasks[0];
@@ -42,12 +39,12 @@ describe('Test checkCompletedTask, editTask and deleteAllCompletedTasks', () => 
       editCompleted(mockTask);
       expect(mockCheckbox.getAttribute('type')).toBe('checkbox');
       expect(mockCheckbox.getAttribute('id')).toBe(`checkCompleted-${mockTask.id}`);
-      
-      checkCompletedFunction(mockTask, 'Enter', mockCheckbox)
+
+      checkCompletedFunction(mockTask, 'Enter', mockCheckbox);
       expect(mockTask.completed).toBe(mockCheckbox.checked);
 
       const changeEvent = new Event('change');
-      checkCompletedFunction(mockTask, changeEvent, mockCheckbox)
+      checkCompletedFunction(mockTask, changeEvent, mockCheckbox);
       expect(mockTask.completed).toBe(mockCheckbox);
     });
   });
@@ -68,12 +65,12 @@ describe('Test checkCompletedTask, editTask and deleteAllCompletedTasks', () => 
       document.createElement = jest.fn(() => mockLabelElement);
       mockTask.isEditing = true;
       mockDescriptionElement.value = mockTask.description;
-      
-      const clickEvent = new Event('click')
+
+      const clickEvent = new Event('click');
       editTask(mockTask, clickEvent, mockDescriptionElement);
       expect(mockLabelElement.id).toEqual(`description-${mockTaskId}`);
       expect(mockTaskName).toBe(mockDescriptionElement.value);
-      //When clik event is triggered on the element, it should enter in mode editing
+      // When clik event is triggered on the element, it should enter in mode editing
       expect(mockTask.isEditing).toBe(true);
 
       editTask(mockTask, 'Enter', mockDescriptionElement);

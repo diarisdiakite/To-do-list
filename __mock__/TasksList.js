@@ -5,7 +5,6 @@ import Task, { myTasks } from './tasks.js';
 const localStorage = new LocalStorage('mockStorage/localSorage');
 global.localStorage = localStorage;
 
-
 // Create tasksList class
 export class TasksList {
   constructor(name) {
@@ -34,7 +33,7 @@ export const todaysList = new TasksList('To-Do today');
 const tasks = todaysList.getTasksFromLocalStorage() || [];
 
 beforeEach(() => {
-  localStorage.clear()
+  localStorage.clear();
   tasks.push(...myTasks);
   todaysList.saveTasksToLocalStorage();
 });
