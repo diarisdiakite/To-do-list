@@ -3,7 +3,7 @@ import { LocalStorage } from 'node-localstorage';
 import Task from './Tasks.js';
 
 // eslint-disable-next-line no-unused-vars
-const localStorage = new LocalStorage('./localStorage');
+const localStorage = new LocalStorage('mockStorage/localSorage');
 global.localStorage = localStorage;
 
 // Create tasksList class
