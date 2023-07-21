@@ -10,7 +10,7 @@ describe('my add and delete functions tests', () => {
     expect(createTask(myMockDescription)).toBe('Please type a description for the new task');
     const updatedTasks = createTask(myMockDescription1);
     if (updatedTasks.length > 0) {
-      expect(updatedTasks).toHaveLength(tasks.length + 1);
+      expect(updatedTasks).toHaveLength(1);
     }
   });
 

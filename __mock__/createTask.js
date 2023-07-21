@@ -1,4 +1,5 @@
-import Task, { tasks } from './tasks.js';
+import Task from './tasks.js';
+import { tasks } from './TasksList.js';
 
 const createTask = (myMockDescription) => {
   // const description = e.target.value.trim();
