@@ -1,4 +1,4 @@
-import { tasks } from '../Tasks.js';
+import { tasks } from '../tasks.js';
 import createTask from '../createTask.js';
 import { deleteTask } from '../deleteTask.js';
 

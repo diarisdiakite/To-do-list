@@ -1,4 +1,4 @@
-import Task from './Tasks.js';
+import Task from './tasks.js';
 import { tasks } from './TasksList.js';
 
 const createTask = (myMockDescription) => {

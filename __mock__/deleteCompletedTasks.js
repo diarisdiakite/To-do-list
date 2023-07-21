@@ -1,4 +1,4 @@
-import { tasks } from './Tasks.js';
+import { tasks } from './tasks.js';
 // import { todaysList, TasksList } from "./taskList";
 
 const deleteCompletedTasks = () => {

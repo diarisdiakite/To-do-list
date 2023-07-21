@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { LocalStorage } from 'node-localstorage';
-import Task from './Tasks.js';
+import Task from './tasks.js';
 
 // eslint-disable-next-line no-unused-vars
 const localStorage = new LocalStorage('mockStorage/localSorage');
