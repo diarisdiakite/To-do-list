@@ -1,6 +1,8 @@
+// eslint-disable-next-line no-unused-vars
 import { LocalStorage } from 'node-localstorage';
 import Task from './Tasks.js';
-// import renderTasks from '../index.js';
+
+// eslint-disable-next-line no-unused-vars
 const localStorage = new LocalStorage('./localStorage');
 global.localStorage = localStorage;
 

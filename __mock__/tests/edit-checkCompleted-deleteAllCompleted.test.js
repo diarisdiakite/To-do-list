@@ -16,7 +16,7 @@ beforeEach(() => {
 
 const mockTask = tasks[0];
 const mockTaskName = tasks[0].description;
-// const mockTaskId = tasks[0].id;
+const mockTaskId = tasks[0].id;
 
 const mockDescriptionElement = {
   value: 'Sample Task 2',
@@ -60,7 +60,7 @@ describe('Test checkCompletedTask, editTask and deleteAllCompletedTasks', () => 
       mockTask.isEditing = true;
       mockDescriptionElement.value = mockTask.description;
       editTask(mockTask, 'Enter', mockDescriptionElement);
-      // expect(mockLabelElement.id).toEqual(`description-${mockTaskId}`);
+      expect(mockLabelElement.id).toEqual(`description-${mockTaskId}`);
       expect(mockTaskName).toBe(mockDescriptionElement.value);
       // after pressing Enter, the editing mode should be disabled.
       expect(mockTask.isEditing).toBe(false);
