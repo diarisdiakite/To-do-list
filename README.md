@@ -114,7 +114,7 @@ run npx json-server -p 3500 -w data/db.json
 
 [`Back to top`](#readme-top)
 
-###<a name="usage">Usage</a>
+### <a name="usage">Usage</a>
 To run the to-do-list application, execute the following command: Open the project in code editor
 
 [`Back to top`](#readme-top)
