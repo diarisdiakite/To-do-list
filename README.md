@@ -133,9 +133,9 @@ You can deploy the to-do list application using: google cloud, Microsoft Azure, 
 
 👤 Didy
 
-GitHub: [@diarisd](github.com/diarisdiakite)
-<br> Twitter: [@diarisdiakite](www.twitter.com/diarisdiakite)
-<br> LinkedIn: [https://www.linkedin.com/in/diariatou-diakite-67ab80165/]()
+GitHub: [@diarisdiakite](github.com/diarisdiakite)
+<br> Twitter: [@diarisd](www.twitter.com/diarisdiakite)
+<br> LinkedIn: [@diarisd](https://www.linkedin.com/in/diariatou-diakite-67ab80165/)
 <br><br>
 
 [`Back to top`](#readme-top)
