@@ -164,7 +164,7 @@ Please follow us on [@linkedin.com/diarisd]() and [@twitter.com/diarisd]()
 ## 🙏 <a name="acknowledgments">Acknowledgments</a>
 I would like to thank the Microverse community to inspire and encourage everyday programmers and aspiring programmers.
 
-Many thanks to my coding partners and particularly to [@Roman-adi](@obj583) and [lincoln Gibson](https://github.com/lincoln1883) for their great hints during my Microverse Journey. 
+Many thanks to my coding partners and particularly to [@Roman-adi](https://github.com/romans-adi) and [lincoln Gibson](https://github.com/lincoln1883) for their great hints during my Microverse Journey. 
 
 [`Back to top`](#readme-top)
 
