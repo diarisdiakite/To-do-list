@@ -157,7 +157,7 @@ Please check the issues page.
 
 ## ⭐️ <a name="show-your-support">Show your support</a>
 If you like my [To-do-list]() you can support my work. Visit [my personal page](https://diarisdiakite.github.io/my-portfolio/).
-Please follow us on [@linkedin.com/diarisd]() and [@twitter.com/diarisd]()
+Please follow us on [@linkedin.com/diarisd](https://www.linkedin.com/in/diariatou-diakite-67ab80165/) and [@twitter.com/diarisd](](www.twitter.com/diarisdiakite)
 
 [`Back to top`](#readme-top)
 
