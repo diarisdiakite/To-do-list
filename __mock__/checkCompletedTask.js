@@ -1,3 +1,5 @@
+import { todaysList } from './TasksList.js';
+
 export const createCheckbox = (task) => {
   const checkCompleted = document.createElement('input');
   checkCompleted.setAttribute('type', 'checkbox');
@@ -7,11 +9,16 @@ export const createCheckbox = (task) => {
   return checkCompleted;
 };
 
-export const checkCompletedFunction = (task, checkCompletedElement) => {
-  checkCompletedElement.addEventListener('change', () => {
-    task.completed = checkCompletedElement.checked;
-    // todaysList.saveTasksToLocalStorage();
-  });
+export const checkCompletedFunction = (task, key, checkCompleted) => {
+  if (key === 'Enter') {
+  // checkCompletedElement.addEventListener('change', () => {
+    task.completed = checkCompleted.checked;
+    todaysList.saveTasksToLocalStorage();
+  // });
+  } else {
+    task.completed = checkCompleted;
+  }
+  return task.completed;
 };
 
 export const editCompleted = (task) => {

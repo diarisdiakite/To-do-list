@@ -1,5 +1,5 @@
 // import { tasks } from './tasks';
-import { todaysList } from './TasksList.js';
+import { todaysList, tasks } from './TasksList.js';
 
 const editTask = (task, key, descriptionElement) => {
   const taskId = task.id;
@@ -14,7 +14,8 @@ const editTask = (task, key, descriptionElement) => {
     todaysList.saveTasksToLocalStorage();
   } else if (key === 'Escape') {
     task.isEditing = false;
-    todaysList.saveTasksToLocalStorage();
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    // todaysList.saveTasksToLocalStorage();
   }
 
   return descriptionElement;

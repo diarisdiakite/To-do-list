@@ -1,8 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { LocalStorage } from 'node-localstorage';
-import Task from './tasks.js';
+import Task, { myTasks } from './tasks.js';
 
-// eslint-disable-next-line no-unused-vars
 const localStorage = new LocalStorage('mockStorage/localSorage');
 global.localStorage = localStorage;
 
@@ -32,5 +31,12 @@ export class TasksList {
 
 export const todaysList = new TasksList('To-Do today');
 const tasks = todaysList.getTasksFromLocalStorage() || [];
+
+beforeEach(() => {
+  localStorage.clear();
+  tasks.push(...myTasks);
+  todaysList.saveTasksToLocalStorage();
+});
+
 const task = new Task('my task');
 export { tasks, task };

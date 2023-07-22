@@ -1,5 +1,4 @@
-import { tasks } from './tasks.js';
-// import { todaysList, TasksList } from "./taskList";
+import { tasks } from './TasksList.js';
 
 const deleteCompletedTasks = () => {
   const incompleteTasks = tasks.filter((task) => !task.completed);

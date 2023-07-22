@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
-import { tasks } from '../tasks.js';
+import { tasks } from '../TasksList.js';
 import deleteCompletedTasks from '../deleteCompletedTasks.js';
-import { createCheckbox, editCompleted } from '../checkCompletedTask.js';
+import { checkCompletedFunction, createCheckbox, editCompleted } from '../checkCompletedTask.js';
 import editTask from '../editTask.js';
 
 const dom = new JSDOM('<!DOCTYPE html><html><body><input id="taskInput"></input><div id="taskList"></div></body></html>');
@@ -39,7 +39,13 @@ describe('Test checkCompletedTask, editTask and deleteAllCompletedTasks', () => 
       editCompleted(mockTask);
       expect(mockCheckbox.getAttribute('type')).toBe('checkbox');
       expect(mockCheckbox.getAttribute('id')).toBe(`checkCompleted-${mockTask.id}`);
+
+      checkCompletedFunction(mockTask, 'Enter', mockCheckbox);
       expect(mockTask.completed).toBe(mockCheckbox.checked);
+
+      const changeEvent = new Event('change');
+      checkCompletedFunction(mockTask, changeEvent, mockCheckbox);
+      expect(mockTask.completed).toBe(mockCheckbox);
     });
   });
 
@@ -59,9 +65,16 @@ describe('Test checkCompletedTask, editTask and deleteAllCompletedTasks', () => 
       document.createElement = jest.fn(() => mockLabelElement);
       mockTask.isEditing = true;
       mockDescriptionElement.value = mockTask.description;
-      editTask(mockTask, 'Enter', mockDescriptionElement);
+
+      const clickEvent = new Event('click');
+      editTask(mockTask, clickEvent, mockDescriptionElement);
       expect(mockLabelElement.id).toEqual(`description-${mockTaskId}`);
       expect(mockTaskName).toBe(mockDescriptionElement.value);
+      // When clik event is triggered on the element, it should enter in mode editing
+      expect(mockTask.isEditing).toBe(true);
+
+      editTask(mockTask, 'Enter', mockDescriptionElement);
+      expect(mockTask.description).toBe(mockDescriptionElement.value);
       // after pressing Enter, the editing mode should be disabled.
       expect(mockTask.isEditing).toBe(false);
     });
